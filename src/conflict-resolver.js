@@ -1,3 +1,4 @@
+// 预消解覆盖冲突，避免 Anywhere“最具体优先”反转 Shadowrocket 的既有顺序语义。
 import { parseCIDR } from "./cidr.js";
 
 class SuffixIndex {
@@ -139,4 +140,3 @@ export function resolveConflicts(groupEntries) {
     report: Object.freeze(report),
   };
 }
-

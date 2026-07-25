@@ -1,3 +1,4 @@
+// 完整下载并验证 29 个来源后才替换 ARR 与兼容性报告，失败保留旧版本。
 import { mkdtemp, mkdir, readdir, rename, rm, unlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { basename, join, resolve } from "node:path";
@@ -96,4 +97,3 @@ if (isDirect) {
     `Updated ${summary.files} Anywhere rule sets from ${summary.sources} sources.\n`,
   );
 }
-

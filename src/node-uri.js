@@ -1,3 +1,4 @@
+// 把已验证的 Sub-Store 节点无损映射为 Anywhere 原生 URI。
 import { canonicalProtocol, validateNode } from "./node-validation.js";
 import { base64Encode } from "./base64.js";
 

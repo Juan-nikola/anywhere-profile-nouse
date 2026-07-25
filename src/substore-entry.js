@@ -1,3 +1,4 @@
+// 实现 Sub-Store File Script 入口，读取独立组合并返回 Anywhere 节点订阅。
 import { produceNodeSubscription } from "./node-normalizer.js";
 
 const ALLOWED_OPTIONS = new Set(["output", "type", "name"]);
@@ -60,4 +61,3 @@ export async function operator(input = {}, targetPlatform, context = {}) {
   logDiagnostics(context, result.diagnostics);
   return { ...input, $content: result.content };
 }
-

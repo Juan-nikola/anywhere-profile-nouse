@@ -1,3 +1,4 @@
+// 编排规则解析、分组合并、冲突消解、ARR 渲染和兼容性统计。
 import {
   CUSTOM_RULES,
   GROUPS,
@@ -143,4 +144,3 @@ export function buildRuleArtifacts(
   };
   return { files, report };
 }
-

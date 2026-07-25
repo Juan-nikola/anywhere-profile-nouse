@@ -1,3 +1,4 @@
+// 集中声明规则来源、业务分组、初始路由、优先级和人工纠错规则。
 const RULE_ROOT =
   "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket";
 

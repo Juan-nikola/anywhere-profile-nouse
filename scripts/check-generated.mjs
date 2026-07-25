@@ -1,3 +1,4 @@
+// 用当前在线上游重新计算生成物，阻止陈旧或手工修改的规则进入发布。
 import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -47,4 +48,3 @@ if (differences.length) {
   throw new Error(`Generated artifacts are stale:\n${differences.join("\n")}`);
 }
 process.stdout.write(`Generated artifacts match ${downloads.size} live sources.\n`);
-

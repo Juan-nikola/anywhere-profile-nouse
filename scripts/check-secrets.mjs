@@ -1,3 +1,4 @@
+// 对全部待公开文件执行秘密扫描，失败输出仅包含路径、行号和类别。
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { execFileSync } from "node:child_process";
@@ -24,4 +25,3 @@ if (findings.length) {
   throw new Error(`Potential secrets detected:\n${summary}`);
 }
 process.stdout.write(`Secret scan passed for ${paths.length} public files.\n`);
-

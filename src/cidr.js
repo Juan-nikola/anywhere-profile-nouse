@@ -1,3 +1,4 @@
+// 解析、规范化并比较 IPv4/IPv6 CIDR，不依赖平台网络库。
 function parseIPv4Address(value) {
   const parts = value.split(".");
   if (parts.length !== 4) throw new Error(`Invalid IPv4 address: ${value}`);
@@ -131,4 +132,3 @@ export function cidrContains(parent, child) {
   if (parent.prefix > child.prefix) return false;
   return (child.network & prefixMask(parent.bits, parent.prefix)) === parent.network;
 }
-

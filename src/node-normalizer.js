@@ -1,3 +1,4 @@
+// 过滤、去重、稳定命名节点，并生成不泄漏诊断信息的原生订阅。
 import { base64Encode } from "./base64.js";
 import { canonicalProtocol, validateNode } from "./node-validation.js";
 import { renderNodeURI } from "./node-uri.js";
@@ -161,4 +162,3 @@ export function produceNodeSubscription(input) {
     diagnostics: normalized.diagnostics,
   };
 }
-

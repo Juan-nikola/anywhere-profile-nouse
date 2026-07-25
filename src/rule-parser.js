@@ -1,3 +1,4 @@
+// 把 Shadowrocket 列表转换为 Anywhere 的四类规则并审计近似/不支持项。
 import { parseCIDR } from "./cidr.js";
 
 const SUPPORTED_TYPES = Object.freeze({

@@ -1,3 +1,4 @@
+// 检查 Markdown 相对链接，并保证每个 ARR 都在 README 暴露稳定 Raw URL。
 import { access, readFile, readdir } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 

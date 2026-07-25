@@ -1,3 +1,4 @@
+// 扫描公开仓库中常见节点 URI、订阅令牌和凭据，报告时不回显秘密。
 const PATTERNS = Object.freeze([
   {
     category: "proxy-uri",
@@ -36,4 +37,3 @@ export function scanText(path, text) {
   }
   return findings;
 }
-

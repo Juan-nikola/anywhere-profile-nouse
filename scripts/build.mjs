@@ -1,3 +1,4 @@
+// 将节点转换器打包为可直接粘贴到 Sub-Store 的单文件脚本。
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { build } from "esbuild";
@@ -31,4 +32,3 @@ await writeFile(
   `${result.outputFiles[0].text.trimEnd()}\n${wrapper.trimStart()}`,
   "utf8",
 );
-

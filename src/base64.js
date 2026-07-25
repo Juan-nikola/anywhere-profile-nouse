@@ -1,3 +1,4 @@
+// 提供不依赖 Node.js Buffer 的 UTF-8/Base64 编码，供 Sub-Store 沙箱使用。
 const ALPHABET =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -42,4 +43,3 @@ export function base64Encode(value) {
   }
   return output;
 }
-

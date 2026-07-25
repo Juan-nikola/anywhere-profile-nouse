@@ -1,3 +1,4 @@
+// 负责生成并严格复核 Anywhere 的 .arrs 规则订阅格式。
 import { parseCIDR } from "./cidr.js";
 
 export const ANYWHERE_MAX_RULES = 100_000;

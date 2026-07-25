@@ -1,3 +1,4 @@
+// 按 Anywhere 当前导入能力验证协议、凭据和传输，返回脱敏原因码。
 export const SUPPORTED_PROTOCOLS = Object.freeze(
   new Set(["vless", "hysteria2", "trojan", "anytls", "ss", "socks5"]),
 );
