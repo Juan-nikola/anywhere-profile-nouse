@@ -1,0 +1,582 @@
+{
+  "generatorVersion": "0.1.0",
+  "sources": [
+    {
+      "id": "Hijacking",
+      "groupId": "security",
+      "minimum": 150,
+      "input": 228,
+      "supported": 228,
+      "approximate": 1,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "BlockHttpDNS",
+      "groupId": "security",
+      "minimum": 40,
+      "input": 63,
+      "supported": 63,
+      "approximate": 18,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "AdvertisingLite",
+      "groupId": "ads",
+      "minimum": 250,
+      "input": 376,
+      "supported": 374,
+      "approximate": 0,
+      "unsupported": 2,
+      "unsupportedTypes": {
+        "URL-REGEX": 2
+      }
+    },
+    {
+      "id": "Privacy",
+      "groupId": "privacy",
+      "minimum": 15,
+      "input": 20,
+      "supported": 20,
+      "approximate": 0,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "BiliBili",
+      "groupId": "bilibili",
+      "minimum": 80,
+      "input": 127,
+      "supported": 123,
+      "approximate": 53,
+      "unsupported": 4,
+      "unsupportedTypes": {
+        "USER-AGENT": 4
+      }
+    },
+    {
+      "id": "DouYin",
+      "groupId": "douyin",
+      "minimum": 8,
+      "input": 13,
+      "supported": 13,
+      "approximate": 2,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "XiaoHongShu",
+      "groupId": "xiaohongshu",
+      "minimum": 3,
+      "input": 4,
+      "supported": 4,
+      "approximate": 0,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "Weibo",
+      "groupId": "weibo",
+      "minimum": 3,
+      "input": 4,
+      "supported": 4,
+      "approximate": 0,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "OpenAI",
+      "groupId": "ai",
+      "minimum": 20,
+      "input": 35,
+      "supported": 34,
+      "approximate": 7,
+      "unsupported": 1,
+      "unsupportedTypes": {
+        "IP-ASN": 1
+      }
+    },
+    {
+      "id": "Claude",
+      "groupId": "ai",
+      "minimum": 2,
+      "input": 3,
+      "supported": 3,
+      "approximate": 1,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "Gemini",
+      "groupId": "ai",
+      "minimum": 8,
+      "input": 13,
+      "supported": 13,
+      "approximate": 3,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "Copilot",
+      "groupId": "ai",
+      "minimum": 30,
+      "input": 51,
+      "supported": 49,
+      "approximate": 20,
+      "unsupported": 2,
+      "unsupportedTypes": {
+        "IP-ASN": 2
+      }
+    },
+    {
+      "id": "GitHub",
+      "groupId": "github",
+      "minimum": 20,
+      "input": 31,
+      "supported": 31,
+      "approximate": 0,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "YouTube",
+      "groupId": "youtube",
+      "minimum": 120,
+      "input": 190,
+      "supported": 183,
+      "approximate": 0,
+      "unsupported": 7,
+      "unsupportedTypes": {
+        "USER-AGENT": 7
+      }
+    },
+    {
+      "id": "Netflix",
+      "groupId": "netflix",
+      "minimum": 800,
+      "input": 1157,
+      "supported": 1156,
+      "approximate": 3,
+      "unsupported": 1,
+      "unsupportedTypes": {
+        "USER-AGENT": 1
+      }
+    },
+    {
+      "id": "Disney",
+      "groupId": "disney",
+      "minimum": 100,
+      "input": 173,
+      "supported": 172,
+      "approximate": 0,
+      "unsupported": 1,
+      "unsupportedTypes": {
+        "USER-AGENT": 1
+      }
+    },
+    {
+      "id": "Spotify",
+      "groupId": "spotify",
+      "minimum": 20,
+      "input": 30,
+      "supported": 29,
+      "approximate": 6,
+      "unsupported": 1,
+      "unsupportedTypes": {
+        "USER-AGENT": 1
+      }
+    },
+    {
+      "id": "GlobalMedia",
+      "groupId": "global-media",
+      "minimum": 700,
+      "input": 1021,
+      "supported": 951,
+      "approximate": 0,
+      "unsupported": 70,
+      "unsupportedTypes": {
+        "URL-REGEX": 1,
+        "USER-AGENT": 69
+      }
+    },
+    {
+      "id": "Telegram",
+      "groupId": "telegram",
+      "minimum": 25,
+      "input": 40,
+      "supported": 35,
+      "approximate": 2,
+      "unsupported": 5,
+      "unsupportedTypes": {
+        "IP-ASN": 5
+      }
+    },
+    {
+      "id": "Facebook",
+      "groupId": "social",
+      "minimum": 350,
+      "input": 570,
+      "supported": 569,
+      "approximate": 0,
+      "unsupported": 1,
+      "unsupportedTypes": {
+        "IP-ASN": 1
+      }
+    },
+    {
+      "id": "Instagram",
+      "groupId": "social",
+      "minimum": 3,
+      "input": 4,
+      "supported": 4,
+      "approximate": 0,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "Twitter",
+      "groupId": "social",
+      "minimum": 20,
+      "input": 33,
+      "supported": 33,
+      "approximate": 0,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "TikTok",
+      "groupId": "tiktok",
+      "minimum": 20,
+      "input": 32,
+      "supported": 31,
+      "approximate": 4,
+      "unsupported": 1,
+      "unsupportedTypes": {
+        "USER-AGENT": 1
+      }
+    },
+    {
+      "id": "Apple",
+      "groupId": "apple",
+      "minimum": 25,
+      "input": 43,
+      "supported": 20,
+      "approximate": 0,
+      "unsupported": 23,
+      "unsupportedTypes": {
+        "USER-AGENT": 23
+      }
+    },
+    {
+      "id": "Microsoft",
+      "groupId": "microsoft",
+      "minimum": 400,
+      "input": 671,
+      "supported": 668,
+      "approximate": 1,
+      "unsupported": 3,
+      "unsupportedTypes": {
+        "USER-AGENT": 3
+      }
+    },
+    {
+      "id": "Game",
+      "groupId": "game",
+      "minimum": 400,
+      "input": 597,
+      "supported": 597,
+      "approximate": 8,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "Download",
+      "groupId": "download",
+      "minimum": 5,
+      "input": 7,
+      "supported": 6,
+      "approximate": 0,
+      "unsupported": 1,
+      "unsupportedTypes": {
+        "URL-REGEX": 1
+      }
+    },
+    {
+      "id": "PrivateTracker",
+      "groupId": "download",
+      "minimum": 150,
+      "input": 248,
+      "supported": 248,
+      "approximate": 118,
+      "unsupported": 0,
+      "unsupportedTypes": {}
+    },
+    {
+      "id": "ChinaMax",
+      "groupId": "china",
+      "minimum": 8000,
+      "input": 12573,
+      "supported": 12507,
+      "approximate": 0,
+      "unsupported": 66,
+      "unsupportedTypes": {
+        "IP-ASN": 1,
+        "USER-AGENT": 65
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "local",
+      "slug": "local",
+      "name": "🏠 本地与局域网",
+      "routing": 1,
+      "rules": 14,
+      "sources": [
+        "built-in:local"
+      ]
+    },
+    {
+      "id": "security",
+      "slug": "security",
+      "name": "☣️ 安全威胁",
+      "routing": 2,
+      "rules": 291,
+      "sources": [
+        "Hijacking",
+        "BlockHttpDNS"
+      ]
+    },
+    {
+      "id": "ads",
+      "slug": "ads",
+      "name": "🧱 常见广告",
+      "routing": 2,
+      "rules": 333,
+      "sources": [
+        "AdvertisingLite"
+      ]
+    },
+    {
+      "id": "privacy",
+      "slug": "privacy",
+      "name": "🕵️ 严格跟踪",
+      "routing": 1,
+      "rules": 20,
+      "sources": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "bilibili",
+      "slug": "bilibili",
+      "name": "📺 哔哩哔哩",
+      "routing": 1,
+      "rules": 122,
+      "sources": [
+        "BiliBili"
+      ]
+    },
+    {
+      "id": "douyin",
+      "slug": "douyin",
+      "name": "🎵 抖音",
+      "routing": 1,
+      "rules": 13,
+      "sources": [
+        "DouYin"
+      ]
+    },
+    {
+      "id": "xiaohongshu",
+      "slug": "xiaohongshu",
+      "name": "📕 小红书",
+      "routing": 1,
+      "rules": 4,
+      "sources": [
+        "XiaoHongShu"
+      ]
+    },
+    {
+      "id": "weibo",
+      "slug": "weibo",
+      "name": "🧣 微博",
+      "routing": 1,
+      "rules": 4,
+      "sources": [
+        "Weibo"
+      ]
+    },
+    {
+      "id": "ai",
+      "slug": "ai",
+      "name": "🤖 AI 专用",
+      "routing": 0,
+      "rules": 73,
+      "sources": [
+        "custom:ai",
+        "OpenAI",
+        "Claude",
+        "Gemini",
+        "Copilot"
+      ]
+    },
+    {
+      "id": "github",
+      "slug": "github",
+      "name": "🐙 GitHub",
+      "routing": 0,
+      "rules": 31,
+      "sources": [
+        "GitHub"
+      ]
+    },
+    {
+      "id": "youtube",
+      "slug": "youtube",
+      "name": "📺 YouTube",
+      "routing": 0,
+      "rules": 183,
+      "sources": [
+        "YouTube"
+      ]
+    },
+    {
+      "id": "netflix",
+      "slug": "netflix",
+      "name": "🎬 Netflix",
+      "routing": 0,
+      "rules": 1155,
+      "sources": [
+        "Netflix"
+      ]
+    },
+    {
+      "id": "disney",
+      "slug": "disney",
+      "name": "🏰 Disney+",
+      "routing": 0,
+      "rules": 170,
+      "sources": [
+        "Disney"
+      ]
+    },
+    {
+      "id": "spotify",
+      "slug": "spotify",
+      "name": "🎵 Spotify",
+      "routing": 0,
+      "rules": 29,
+      "sources": [
+        "Spotify"
+      ]
+    },
+    {
+      "id": "global-media",
+      "slug": "global-media",
+      "name": "🌍 国际媒体",
+      "routing": 0,
+      "rules": 880,
+      "sources": [
+        "GlobalMedia"
+      ]
+    },
+    {
+      "id": "telegram",
+      "slug": "telegram",
+      "name": "✈️ Telegram",
+      "routing": 0,
+      "rules": 35,
+      "sources": [
+        "Telegram"
+      ]
+    },
+    {
+      "id": "social",
+      "slug": "social",
+      "name": "💬 海外社交",
+      "routing": 0,
+      "rules": 602,
+      "sources": [
+        "Facebook",
+        "Instagram",
+        "Twitter"
+      ]
+    },
+    {
+      "id": "tiktok",
+      "slug": "tiktok",
+      "name": "🎶 TikTok",
+      "routing": 0,
+      "rules": 27,
+      "sources": [
+        "TikTok"
+      ]
+    },
+    {
+      "id": "apple",
+      "slug": "apple",
+      "name": "🍎 Apple",
+      "routing": 1,
+      "rules": 20,
+      "sources": [
+        "Apple"
+      ]
+    },
+    {
+      "id": "microsoft",
+      "slug": "microsoft",
+      "name": "🪟 Microsoft",
+      "routing": 1,
+      "rules": 667,
+      "sources": [
+        "Microsoft"
+      ]
+    },
+    {
+      "id": "game",
+      "slug": "game",
+      "name": "🕹️ 游戏平台",
+      "routing": 0,
+      "rules": 552,
+      "sources": [
+        "Game"
+      ]
+    },
+    {
+      "id": "download",
+      "slug": "download",
+      "name": "⬇️ 下载/P2P",
+      "routing": 1,
+      "rules": 253,
+      "sources": [
+        "Download",
+        "PrivateTracker"
+      ]
+    },
+    {
+      "id": "china",
+      "slug": "china",
+      "name": "🇨🇳 中国大陆",
+      "routing": 1,
+      "rules": 11414,
+      "sources": [
+        "ChinaMax"
+      ]
+    }
+  ],
+  "totals": {
+    "input": 18357,
+    "supported": 18168,
+    "approximate": 247,
+    "unsupported": 189
+  },
+  "conflicts": {
+    "identical": 202,
+    "coveredSuffix": 6,
+    "coveredKeyword": 6,
+    "coveredCIDR": 1082,
+    "crossGroup": 1259
+  }
+}

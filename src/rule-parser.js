@@ -44,13 +44,16 @@ export function parseRuleList(sourceId, text) {
       throw new Error(`${sourceId}: Unknown rule type ${inputType}`);
     }
 
-    const type = SUPPORTED_TYPES[inputType];
+    let type = SUPPORTED_TYPES[inputType];
     let value;
     try {
-      value =
-        type === 0 || type === 1
-          ? parseCIDR(rawValue).canonical
-          : normalizeDomain(rawValue, inputType);
+      if (type === 0 || type === 1) {
+        const cidr = parseCIDR(rawValue);
+        type = cidr.version === 6 ? 1 : 0;
+        value = cidr.canonical;
+      } else {
+        value = normalizeDomain(rawValue, inputType);
+      }
     } catch (error) {
       throw new Error(`${sourceId}: Invalid ${inputType} value`, { cause: error });
     }
@@ -78,4 +81,3 @@ export function parseRuleList(sourceId, text) {
     unsupported: Object.freeze(unsupported),
   });
 }
-

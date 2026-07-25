@@ -38,6 +38,23 @@ test("ignores comments and rejects malformed supported rules", () => {
   assert.throws(() => parseRuleList("Example", "IP-CIDR,not-an-ip"), /invalid/i);
 });
 
+test("derives the Anywhere IP type from the actual address family", () => {
+  const parsed = parseRuleList(
+    "MixedIP",
+    [
+      "IP-CIDR,2607:fb10::/32,no-resolve",
+      "IP-CIDR6,192.0.2.0/24,no-resolve",
+    ].join("\n"),
+  );
+  assert.deepEqual(
+    parsed.rules.map(({ type, value }) => [type, value]),
+    [
+      [1, "2607:fb10::/32"],
+      [0, "192.0.2.0/24"],
+    ],
+  );
+});
+
 test("rejects a newly unknown rule type", () => {
   assert.throws(
     () => parseRuleList("Example", "FUTURE-RULE,value"),
