@@ -20,6 +20,7 @@ test("documents every public rule subscription and core Anywhere behavior", asyn
     "anywhere-nodes",
     "Country Bypass",
     "Prevent DNS Leak",
+    "anywhere://add-rule-set",
     "不能自动测速",
     "不能故障转移",
     "不能多层嵌套",

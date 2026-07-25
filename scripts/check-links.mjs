@@ -19,7 +19,7 @@ for (const file of markdownFiles) {
   const text = await readFile(file, "utf8");
   for (const match of text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)) {
     const target = match[1].trim().replace(/^<|>$/g, "");
-    if (/^(?:https?:|mailto:|#)/.test(target)) continue;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith("#")) continue;
     const path = target.split("#")[0];
     if (!path) continue;
     try {
