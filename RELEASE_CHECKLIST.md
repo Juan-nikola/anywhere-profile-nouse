@@ -22,6 +22,7 @@
 ## Anywhere / Sub-Store 冒烟测试
 
 - [ ] `anywhere-sources` 独立于 Shadowrocket 组合
+- [ ] 原 Shadowrocket Profile、组合和订阅已备份，回滚路径可用
 - [ ] `anywhere-nodes` 能生成非空私密订阅
 - [ ] Anywhere 能刷新节点和公开规则
 - [ ] 首页全局节点可用

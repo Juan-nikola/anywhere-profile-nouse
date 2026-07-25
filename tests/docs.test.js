@@ -34,11 +34,17 @@ test("documents every public rule subscription and core Anywhere behavior", asyn
 
 test("ships deployment, maintenance, compatibility, and troubleshooting guides", async () => {
   const required = {
-    "docs/deployment.md": ["File Script", "output=nodes&type=collection&name=anywhere-sources"],
+    "docs/deployment.md": [
+      "File Script",
+      "output=nodes&type=collection&name=anywhere-sources",
+      "备份",
+      "单设备",
+      "回滚",
+    ],
     "docs/maintenance.md": ["npm run verify", "update:rules"],
     "docs/compatibility.md": ["DOMAIN", "VMess", "代理链"],
     "docs/troubleshooting.md": ["Default", "Country Bypass", "脱敏"],
-    "RELEASE_CHECKLIST.md": ["GitHub Actions", "Raw"],
+    "RELEASE_CHECKLIST.md": ["GitHub Actions", "Raw", "Shadowrocket", "回滚"],
   };
 
   for (const [path, phrases] of Object.entries(required)) {
