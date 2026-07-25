@@ -34,21 +34,130 @@ Anywhere 首页选择一个日常全局节点后：
 
 ### 1. 在 Sub-Store 建立私密节点订阅
 
-1. 新建一个独立组合，命名为 `anywhere-sources`，加入你想给 Anywhere 使用的现有节点来源。
-   这不会修改小火箭使用的组合与订阅。
-2. 在 Sub-Store 新建 `File Script`，命名为 `anywhere-node-generator`，内容使用
-   [`dist/substore-node-generator.js`](dist/substore-node-generator.js)。
-3. 脚本参数填写：
+先分清下面三个名称，它们不是三个节点分组：
+
+| 名称 | Sub-Store 中的类型 | 用途 |
+|---|---|---|
+| `anywhere-sources` | 组合/集合 | 保存供 Anywhere 使用的原始节点来源 |
+| `anywhere-node-generator` | `anywhere-nodes` 内的脚本操作 | 读取组合、过滤协议并转换格式 |
+| `anywhere-nodes` | 文件 | 最终给 Anywhere 导入的私密节点订阅 |
+
+`anywhere-node-generator` 不是订阅分组。按当前 Sub-Store Web UI 操作时，不必另外建立一个
+同名组合或文件；它是 `anywhere-nodes` 文件内部的一项“脚本操作”。如果旧版 Sub-Store
+提供独立的 `File Script` 脚本库，也可以把脚本先存入脚本库再引用，但最终输出仍然必须是
+`anywhere-nodes` 文件。
+
+#### 1.1 建立节点来源组合
+
+1. 进入 Sub-Store 的“订阅”页面。
+2. 新建组合/集合，名称准确填写为 `anywhere-sources`。
+3. 选择要给 Anywhere 使用的现有订阅。可以使用和 Shadowrocket 相同的上游来源，但不要
+   修改或删除 Shadowrocket 原有组合。
+4. 保存后打开组合预览，确认组合中确实存在节点。组合为空时，生成器会拒绝输出空订阅。
+
+以后增加或移除 Anywhere 节点，只需要编辑 `anywhere-sources`；不需要修改脚本、文件或
+公开规则。
+
+#### 1.2 新建最终文件
+
+1. 进入 Sub-Store 的“文件”页面，点击顶部 `+`，选择“文件”。
+2. 填写下列字段：
+
+   | 字段 | 值 |
+   |---|---|
+   | 名称 | `anywhere-nodes` |
+   | 显示名称 | `Anywhere 节点` |
+   | 类型 | `文件` |
+   | 来源 | `本地` |
+   | 标签 | 建议填 `anywhere` |
+   | 备注 | 建议注明由 `anywhere-sources` 生成 |
+
+3. 本地文件正文可以保持默认注释或留空。真实节点由后面的脚本操作生成，不要把节点 URI
+   手工粘贴到正文。
+4. “启用下载”只影响下载时的文件名，不影响订阅 API；可按需要开启。
+
+#### 1.3 添加转换脚本
+
+在 `anywhere-nodes` 编辑页向下找到“文件操作”：
+
+1. 点击“脚本操作”。
+2. 打开“文件操作”标题旁的总开关。只启用单个脚本、但没有打开这个总开关时，脚本不会
+   执行。
+3. 点击脚本操作标题右侧的编辑图标，把操作名称改为
+   `anywhere-node-generator`。
+4. 保持该操作的“启用”和“预览”开启。
+5. 类型选择“远程链接”，填写：
 
    ```text
-   output=nodes&type=collection&name=anywhere-sources
+   https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/dist/substore-node-generator.js
    ```
 
-4. 新建文件订阅 `anywhere-nodes`，让它调用上述脚本，建议设置为每 6 小时更新。
-5. 把 `anywhere-nodes` 的私密订阅 URL 添加到 Anywhere 的节点订阅中。
+6. 展开参数，分别添加三行。不要把三项合并到同一个 key 或 value 输入框：
 
-节点订阅 URL 含有你的节点凭据，**不要公开**、不要提交到本仓库、不要发到 Issue 或日志。
-完整操作见[部署指南](docs/deployment.md)。
+   | key | value |
+   |---|---|
+   | `output` | `nodes` |
+   | `type` | `collection` |
+   | `name` | `anywhere-sources` |
+
+7. “关闭缓存”和“不验证服务器证书”保持默认关闭。正常的 GitHub Raw HTTPS 不需要跳过
+   证书校验。
+
+等价的参数文本是：
+
+```text
+output=nodes&type=collection&name=anywhere-sources
+```
+
+#### 1.4 预览并保存
+
+1. 保存前点击底部“即时预览”。
+2. 成功结果应是一整段很长的单行 Base64 文本，通常以字母或数字开头。长度取决于节点数。
+3. 结果不能是 `{}`、空白、错误页面，也不能出现
+   `produceArtifact must return a non-empty node array`。
+4. 预览成功后关闭预览窗口，再点击“保存”。
+5. 返回“文件”列表，确认出现显示名称“Anywhere 节点”、标签 `anywhere` 和刚才填写的
+   备注。
+6. 使用文件卡片上的复制按钮取得 `anywhere-nodes` 私密文件 URL。它通常指向
+   `/api/file/anywhere-nodes`，但必须使用 Sub-Store 实际生成的完整私密地址，不要自己
+   拼接访问令牌。
+7. 在未登录的普通浏览器标签页打开一次该 URL。成功时仍应得到非空 Base64，而不是
+   Sub-Store 管理页面、JSON 空对象或 404。
+
+#### 1.5 导入 Anywhere
+
+1. 在 Anywhere 的节点/代理订阅页面新增订阅。
+2. 名称建议填 `Anywhere 节点`，URL 填上一步复制的 `anywhere-nodes` 私密 URL。
+3. 保存并刷新订阅，确认节点列表出现 VLESS、Hysteria2、Trojan、AnyTLS、Shadowsocks
+   或 SOCKS5 等受支持节点。
+4. 回到首页选择一个节点，先测试国外网站；再继续导入下文的公开分流规则。
+5. 节点来源发生变化后，先刷新 Sub-Store 的 `anywhere-sources`，再刷新 Anywhere 中的
+   节点订阅。建议每 6 小时刷新一次；客户端没有自动刷新选项时，日常手动刷新即可。
+
+最终检查清单：
+
+- `anywhere-sources` 中至少有一个有效节点；
+- 即时预览是非空 Base64；
+- “文件操作”总开关和脚本的“启用”开关都已开启；
+- 文件列表存在 `anywhere-nodes`；
+- 私密文件 URL 返回非空 Base64；
+- Anywhere 能刷新出节点并连接；
+- 原 Shadowrocket 组合、文件和 Profile 均未修改。
+
+常见问题：
+
+- 预览仍是默认注释：通常是“文件操作”总开关没有开启。
+- 提示组合为空：检查名称是否逐字为 `anywhere-sources`，以及组合是否选中了真实订阅。
+- 提示脚本下载失败：确认当前网络能访问 GitHub Raw，并检查远程脚本 URL 是否完整。
+- 只有部分节点出现：生成器会主动排除 Anywhere 无法完整表达的协议和传输，详见
+  [节点兼容性](#节点兼容性)。
+- Anywhere 导入后没有变化：确认导入的是 `anywhere-nodes` 私密文件 URL，而不是 GitHub
+  脚本 URL、Sub-Store 管理地址或 `anywhere-sources` 组合地址。
+
+`anywhere-nodes` URL 包含访问标识，并可返回完整节点信息，**不要公开**、不要提交到本
+仓库、不要发到 Issue、截图或日志。管理地址或订阅 URL 泄露后，应在 Sub-Store 轮换访问
+标识并更新 Anywhere 中保存的订阅。更完整的部署与回滚说明见
+[部署指南](docs/deployment.md)。
 
 ### 2. 导入公开规则订阅
 

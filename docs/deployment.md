@@ -22,17 +22,36 @@
 不要复用现有小火箭输出组合的名字，也不要修改它的脚本链。独立组合的好处是，Anywhere
 协议过滤或命名变化不会影响 Shadowrocket。
 
-## 2. 安装节点生成脚本
+## 2. 新建节点文件并安装生成脚本
 
-1. 打开本仓库的
-   [`dist/substore-node-generator.js`](../dist/substore-node-generator.js)。
-2. 在 Sub-Store 新建一个 `File Script`，名称建议为 `anywhere-node-generator`。
-3. 复制脚本全文。
-4. 设置参数：
+当前 Sub-Store Web UI 可以直接在最终文件内添加脚本操作，不必另建脚本分组：
+旧版界面或文档可能把这项能力称为 `File Script`；两者指向同一种文件处理脚本，区别只是
+新版界面把它直接配置在 `anywhere-nodes` 的“文件操作”区域。
+
+1. 进入“文件”，点击 `+`，选择“文件”。
+2. 名称填 `anywhere-nodes`，显示名称建议填 `Anywhere 节点`，类型选择“文件”，来源选择
+   “本地”，标签建议填 `anywhere`。
+3. 找到“文件操作”，点击“脚本操作”，再打开“文件操作”标题旁的总开关。
+4. 点击脚本标题右侧的编辑图标，将操作命名为 `anywhere-node-generator`。
+5. 保持脚本操作的“启用”和“预览”开启，类型选择“远程链接”，填写：
 
    ```text
-   output=nodes&type=collection&name=anywhere-sources
+   https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/dist/substore-node-generator.js
    ```
+
+6. 展开参数，逐行添加：
+
+   | key | value |
+   |---|---|
+   | `output` | `nodes` |
+   | `type` | `collection` |
+   | `name` | `anywhere-sources` |
+
+等价的参数文本为：
+
+```text
+output=nodes&type=collection&name=anywhere-sources
+```
 
 参数含义：
 
@@ -43,17 +62,19 @@
 脚本会请求 Sub-Store 以内部 JSON 形式生成该组合，然后过滤协议、验证参数、按网络身份
 去重、加地区/来源标签，最后输出 Base64 编码的 Anywhere 原生 URI 列表。
 
-## 3. 发布私密节点文件
+## 3. 预览并发布私密节点文件
 
-在 Sub-Store 建立文件订阅：
+1. 点击底部“即时预览”。
+2. 成功结果是一整段非空 Base64 文本；不能是默认注释、`{}` 或空白。
+3. 如果提示 `produceArtifact must return a non-empty node array`，检查
+   `anywhere-sources` 的名称、内容和参数。
+4. 预览成功后关闭预览并保存。
+5. 回到文件列表，确认存在显示名称“Anywhere 节点”的文件。
+6. 从文件卡片复制 `anywhere-nodes` 私密文件 URL，并在普通浏览器标签页验证它仍返回
+   非空 Base64。
 
-- 名称：`anywhere-nodes`
-- 处理脚本：`anywhere-node-generator`
-- 参数：保持上节参数
-- 建议更新周期：每 6 小时
-
-先手动运行一次。成功日志只应出现总数、接受数、协议/地区/来源分类、排除原因与警告数量，
-不应出现服务器、端口、UUID、密码、公钥或完整 URI。
+成功日志只应出现总数、接受数、协议/地区/来源分类、排除原因与警告数量，不应出现服务器、
+端口、UUID、密码、公钥或完整 URI。
 
 若有效节点数为零，生成器会主动失败，不会输出空订阅覆盖上一版。
 
@@ -62,12 +83,17 @@
 
 ## 4. 把节点订阅加入 Anywhere
 
-在 Anywhere 的代理/节点订阅区域添加 `anywhere-nodes` 私密 URL，刷新后检查：
+在 Anywhere 的代理/节点订阅区域添加 `anywhere-nodes` 私密 URL，名称建议填
+`Anywhere 节点`。保存并刷新后检查：
 
 - 支持的节点出现在列表中；
 - 节点名称带地区旗帜和 `[自建]`、`[机场]`、`[Realm]`、`[服务端链]`、
   `[落地]` 或 `[来源]` 标签；
 - 首页选中一个节点后可以正常联网。
+
+导入的是 Sub-Store 生成的 `anywhere-nodes` 私密文件 URL，不是 GitHub Raw 脚本 URL、
+Sub-Store 管理地址或 `anywhere-sources` 组合 URL。节点订阅建议每 6 小时刷新一次；客户端
+没有定时刷新功能时手动刷新即可。
 
 被过滤的协议详见[兼容性说明](compatibility.md)。如果节点要求跳过证书校验，生成日志会
 出现 `global-allow-insecure-required` 警告；只有确认节点可信后才开启 `Allow Insecure`。
