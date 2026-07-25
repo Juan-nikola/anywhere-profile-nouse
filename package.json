@@ -1,0 +1,23 @@
+{
+  "name": "anywhere-profile",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "update:rules": "node scripts/update-rules.mjs",
+    "check:rules": "node scripts/check-rules.mjs",
+    "check:generated": "node scripts/check-generated.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "verify": "npm test && npm run build && npm run check:rules && npm run check:generated && npm run check:secrets && npm run check:links"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.1"
+  }
+}
+
