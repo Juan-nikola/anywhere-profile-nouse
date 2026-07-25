@@ -24,5 +24,8 @@ test("rejects malformed supported nodes with reason codes only", () => {
   });
   assert.equal(validateNode({ type: "vless", name: "x", server: "x", port: 443 }).reason,
     "missing-credential");
+  assert.equal(validateNode({
+    ...nodeFixtures.trojan,
+    network: "ws",
+  }).reason, "unsupported-transport");
 });
-

@@ -112,6 +112,10 @@ var AnywhereNodeBundle = (() => {
     if ((protocol === "trojan" || protocol === "anytls") && !present(node.password)) {
       return invalid(protocol, "missing-credential");
     }
+    if (protocol === "trojan") {
+      const network = String(node.network ?? "tcp").toLowerCase();
+      if (network !== "tcp") return invalid(protocol, "unsupported-transport");
+    }
     if (protocol === "ss") {
       if (!present(node.password) || !present(node.cipher ?? node.method)) {
         return invalid(protocol, "missing-credential");

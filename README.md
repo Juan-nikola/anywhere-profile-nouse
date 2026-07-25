@@ -1,13 +1,13 @@
 # Anywhere Profile
 
-为官方 [Anywhere](https://github.com/ProxymanApp/Anywhere) iOS 客户端准备的日常分流规则与
+为官方 [Anywhere](https://github.com/NodePassProject/Anywhere) iOS 客户端准备的日常分流规则与
 Sub-Store 节点转换器。目标是在 **不修改 App、不公开节点凭据** 的前提下，最大限度复刻
 小火箭的使用方式：
 
 - 本地网络、中国域名和中国 IP 直连；
 - 广告、安全威胁默认拒绝；
 - AI、GitHub、流媒体、社交等业务各自一个分组，可以在 Anywhere 中点选具体节点；
-- 未匹配域名先解析真实目标 IP：中国 IP 直连，非中国 IP 使用首页当前全局节点；
+- 未匹配域名可再按解析后的 IPv4 判断：中国 IP 直连，非中国 IP 使用首页当前全局节点；
 - 规则每天更新，更新失败不会覆盖上一份有效规则；
 - 节点由你自己的 Sub-Store 私密生成，节点每 6 小时更新。
 
@@ -24,7 +24,8 @@ Anywhere 首页选择一个日常全局节点后：
 2. 已单独指定节点的业务组走该节点；
 3. 没有单独指定的业务组保持 `Default`，继续使用首页全局节点；
 4. 中国域名、中国 IP 与局域网直连；
-5. 未匹配域名由 `Country Bypass` 根据解析后的 IP 判断：中国直连，其余使用首页节点。
+5. 未匹配域名在允许本地 DNS 判断时，由 `Country Bypass` 根据解析后的 IPv4 再判断：
+   中国直连，其余使用首页节点。
 
 因此你平时只需要在首页切换一次全局节点。需要让 AI、YouTube 或 Netflix 使用不同地区时，
 打开对应规则集并点选目标节点即可。节点失效时仍需手动换节点。
@@ -86,14 +87,20 @@ Anywhere 首页选择一个日常全局节点后：
 
 ### 3. 打开中国兜底判断
 
-在 Anywhere 设置中启用中国的 `Country Bypass`。它负责规则未匹配时的最后判断：
+在 Anywhere 设置中启用中国的 `Country Bypass`，并关闭 `Prevent DNS Leak`。后一个设置
+开启时，Anywhere 会禁止“本地解析后再与 IP-CIDR 匹配”，未知域名就无法做这层国内判断。
+可用时的最后顺序为：
 
 ```text
 目标域名 → 解析目标 IP → 中国 IP 直连 → 非中国 IP 使用首页当前节点
 ```
 
-如果关闭它，已知的中国规则仍会直连，但新域名、冷门域名和规则暂未覆盖的国内地址可能走
-全局节点。不要同时启用方向相反或重复的地区绕过设置。
+当前 Anywhere 源码只在后台解析并缓存第一个 IPv4，因此一个此前从未见过的域名第一次连接
+可能先使用首页节点，后续连接才按缓存 IP 命中国内直连；纯 IPv6 未知域名也没有这层二次
+判断。这是客户端限制，已知中国域名和 IP 仍会直接命中本项目规则。
+
+如果关闭 `Country Bypass`，已知的中国规则仍会直连，但新域名、冷门域名和规则暂未覆盖的
+国内地址可能走全局节点。不要同时启用方向相反或重复的地区绕过设置。
 
 ## 节点兼容性
 
@@ -101,7 +108,7 @@ Anywhere 首页选择一个日常全局节点后：
 
 - VLESS（TCP、WebSocket、gRPC、XHTTP、HTTPUpgrade，含 TLS/Reality 可映射参数）
 - Hysteria2
-- Trojan
+- Trojan（Anywhere 原生 TCP + TLS）
 - AnyTLS
 - Shadowsocks（不含插件）
 - SOCKS5
@@ -156,7 +163,7 @@ npm run verify
 
 规则数据来自 Blackmatrix7 的
 [ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)，客户端能力以
-[Anywhere](https://github.com/ProxymanApp/Anywhere) 为准。第三方来源和许可见
+[Anywhere](https://github.com/NodePassProject/Anywhere) 为准。第三方来源和许可见
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
 
 本项目代码使用 [MIT License](LICENSE)。

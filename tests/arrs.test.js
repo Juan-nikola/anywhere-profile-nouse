@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { parseARRS, renderARRS } from "../src/arrs.js";
+import { ANYWHERE_MAX_RULES, parseARRS, renderARRS } from "../src/arrs.js";
 
 test("renders deterministic Anywhere rule sets", () => {
   const text = renderARRS(
@@ -30,5 +30,13 @@ test("rejects malformed Anywhere files", () => {
   assert.throws(() => parseARRS("name = one\nrouting = 9\n2, example.com\n"), /routing/);
   assert.throws(() => parseARRS("name = one\nrouting = 1\n4, example.com\n"), /type/);
   assert.throws(() => parseARRS("name = one\nrouting = 1\n2,\n"), /rule/);
+  assert.throws(
+    () => renderARRS(
+      { name: "too large", routing: 0 },
+      Array(ANYWHERE_MAX_RULES + 1).fill({ type: 2, value: "example.com" }),
+      ["test"],
+      "0.1.0",
+    ),
+    /exceeds Anywhere limit/,
+  );
 });
-

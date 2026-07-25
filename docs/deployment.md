@@ -89,7 +89,8 @@ Anywhere Rule Set 订阅。
 
 ## 6. 启用国内/国外兜底
 
-在 Anywhere 设置中启用中国 `Country Bypass`。最终顺序应为：
+在 Anywhere 设置中启用中国 `Country Bypass`，并关闭 `Prevent DNS Leak`。Anywhere 只有
+在允许本地 DNS 解析时，才会把未匹配域名解析出的 IPv4 再交给中国 IP 规则。最终顺序应为：
 
 ```text
 广告/安全拒绝
@@ -101,7 +102,8 @@ Anywhere Rule Set 订阅。
 ```
 
 用一个规则未覆盖的国内小站和一个国外小站分别测试。若方向相反，检查 Country Bypass
-所选国家/模式是否确实表示“中国地址绕过代理”。
+所选国家/模式是否确实表示“中国地址绕过代理”。首次访问可能先走默认节点，因为解析在
+后台预热；断开后再次访问才会使用缓存的 IPv4 判断。纯 IPv6 未知域名不参与这次二次匹配。
 
 ## 7. 日常操作
 

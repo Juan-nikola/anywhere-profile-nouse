@@ -1,5 +1,7 @@
 import { parseCIDR } from "./cidr.js";
 
+export const ANYWHERE_MAX_RULES = 100_000;
+
 function compareRules(left, right) {
   if (left.type !== right.type) return left.type - right.type;
   return left.value.localeCompare(right.value, "en");
@@ -11,6 +13,9 @@ export function renderARRS(group, rules, sourceIds, generatorVersion) {
   }
   if (!Array.isArray(rules) || rules.length === 0) {
     throw new Error(`Cannot render empty ARR group: ${group.name}`);
+  }
+  if (rules.length > ANYWHERE_MAX_RULES) {
+    throw new Error(`ARR rule count exceeds Anywhere limit: ${rules.length}`);
   }
   if (!Array.isArray(sourceIds) || !sourceIds.length) {
     throw new Error(`Missing ARR sources: ${group.name}`);

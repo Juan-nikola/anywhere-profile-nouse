@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 
-import { parseARRS } from "../src/arrs.js";
+import { ANYWHERE_MAX_RULES, parseARRS } from "../src/arrs.js";
 
 test("every committed ARR file parses and uses supported IDs", async () => {
   const names = (await readdir(new URL("../rules/", import.meta.url)))
@@ -12,6 +12,7 @@ test("every committed ARR file parses and uses supported IDs", async () => {
     const text = await readFile(new URL(`../rules/${name}`, import.meta.url), "utf8");
     const parsed = parseARRS(text);
     assert.ok(parsed.rules.length > 0, name);
+    assert.ok(parsed.rules.length <= ANYWHERE_MAX_RULES, name);
     assert.ok(parsed.rules.every((rule) => [0, 1, 2, 3].includes(rule.type)), name);
   }
 });
