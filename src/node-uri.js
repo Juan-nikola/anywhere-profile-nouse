@@ -1,4 +1,5 @@
 import { canonicalProtocol, validateNode } from "./node-validation.js";
+import { base64Encode } from "./base64.js";
 
 function encoded(value) {
   return encodeURIComponent(String(value));
@@ -166,10 +167,9 @@ function renderAnyTLS(node) {
 }
 
 function renderShadowsocks(node) {
-  const userInfo = Buffer.from(
+  const userInfo = base64Encode(
     `${node.cipher ?? node.method}:${node.password}`,
-    "utf8",
-  ).toString("base64").replace(/=+$/g, "");
+  ).replace(/=+$/g, "");
   return baseURL("ss", userInfo, node);
 }
 
@@ -201,4 +201,3 @@ export function renderNodeURI(node) {
       throw new Error("unsupported-protocol");
   }
 }
-
