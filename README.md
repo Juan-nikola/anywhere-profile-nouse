@@ -55,10 +55,9 @@ Anywhere 首页选择一个日常全局节点后：
 在 Anywhere 中逐个添加下面的 Rule Set URL。首次导入会使用项目给定的初始路由；
 后续规则刷新不会覆盖你在 App 内已经选择的节点。
 
-[在安装了 Anywhere 的 iPhone/iPad 上一键导入全部 23 份规则](anywhere://add-rule-set?link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/local.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/security.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/ads.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/privacy.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/bilibili.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/douyin.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/xiaohongshu.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/weibo.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/ai.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/github.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/youtube.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/netflix.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/disney.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/spotify.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/global-media.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/telegram.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/social.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/tiktok.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/apple.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/microsoft.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/game.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/download.arrs&link=https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/china.arrs)
-
-Anywhere 会先展示导入清单，默认全选，确认后才写入。若 GitHub App 内不允许打开自定义链接，
-请在 Safari 中打开本 README 再点击；仍失败时使用下表逐个导入。
+GitHub 会移除 `anywhere://add-rule-set` 自定义链接，所以批量导入请打开
+[`import-all.txt`](import-all.txt)，复制其中完整的一行到 Safari 地址栏并前往。Anywhere
+会展示 23 项导入清单，默认全选，确认后才写入；若系统没有唤起 App，则使用下表逐个导入。
 
 | 分组 | 初始行为 | Raw URL |
 |---|---|---|

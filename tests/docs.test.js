@@ -6,13 +6,16 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("documents every public rule subscription and core Anywhere behavior", async () => {
   const readme = await read("README.md");
+  const importLink = await read("import-all.txt");
   const ruleNames = (await readdir(new URL("../rules", import.meta.url)))
     .filter((name) => name.endsWith(".arrs"));
 
+  assert.ok(importLink.startsWith("anywhere://add-rule-set?link="));
   for (const name of ruleNames) {
     const url =
       `https://raw.githubusercontent.com/Juan-nikola/anywhere-profile/main/rules/${name}`;
     assert.match(readme, new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.ok(importLink.includes(`link=${url}`), `import-all.txt missing: ${name}`);
   }
 
   for (const phrase of [
