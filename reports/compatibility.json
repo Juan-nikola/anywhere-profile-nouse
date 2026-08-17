@@ -316,8 +316,8 @@
       "id": "ChinaMax",
       "groupId": "china",
       "minimum": 8000,
-      "input": 12293,
-      "supported": 12227,
+      "input": 12292,
+      "supported": 12226,
       "approximate": 0,
       "unsupported": 66,
       "unsupportedTypes": {
@@ -560,15 +560,15 @@
       "slug": "china",
       "name": "🇨🇳 中国大陆",
       "routing": 1,
-      "rules": 11134,
+      "rules": 11133,
       "sources": [
         "ChinaMax"
       ]
     }
   ],
   "totals": {
-    "input": 18077,
-    "supported": 17888,
+    "input": 18076,
+    "supported": 17887,
     "approximate": 247,
     "unsupported": 189
   },
