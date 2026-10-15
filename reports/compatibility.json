@@ -248,8 +248,8 @@
       "id": "TikTok",
       "groupId": "tiktok",
       "minimum": 20,
-      "input": 32,
-      "supported": 31,
+      "input": 35,
+      "supported": 34,
       "approximate": 4,
       "unsupported": 1,
       "unsupportedTypes": {
@@ -316,8 +316,8 @@
       "id": "ChinaMax",
       "groupId": "china",
       "minimum": 8000,
-      "input": 12691,
-      "supported": 12625,
+      "input": 12689,
+      "supported": 12623,
       "approximate": 0,
       "unsupported": 66,
       "unsupportedTypes": {
@@ -509,7 +509,7 @@
       "slug": "tiktok",
       "name": "🎶 TikTok",
       "routing": 0,
-      "rules": 27,
+      "rules": 30,
       "sources": [
         "TikTok"
       ]
@@ -560,15 +560,15 @@
       "slug": "china",
       "name": "🇨🇳 中国大陆",
       "routing": 1,
-      "rules": 11531,
+      "rules": 11529,
       "sources": [
         "ChinaMax"
       ]
     }
   ],
   "totals": {
-    "input": 18475,
-    "supported": 18286,
+    "input": 18476,
+    "supported": 18287,
     "approximate": 247,
     "unsupported": 189
   },
